@@ -17,10 +17,6 @@ var commentRoutes = require('./routes/comments'),
 	indexRoutes = require('./routes/index');
 
 mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true, useUnifiedTopology: true });
-// mongoose.connect('mongodb+srv://sugata:jeet2898@cluster0-vre4p.mongodb.net/test?retryWrites=true&w=majority', {
-// 	useNewUrlParser: true,
-// 	useUnifiedTopology: true
-// });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
