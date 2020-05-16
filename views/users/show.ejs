@@ -7,17 +7,22 @@
             <img src="<%= user.avatar %> " alt="User Profile Image">
             <div class="caption"><a href="mailto:<%= user.email %>"><%= user.email %></a></div>
         </div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto accusantium nam, maiores amet, eos quaerat placeat veritatis natus hic ipsam quas consequuntur quo dolor beatae incidunt. Distinctio animi voluptatibus consequatur.
+        <h5>Bio:</h5>
+        <p><%= user.bio %></p>
     </div>
     <div class="col-md-8">
         <h3><%= user.username %>'s campgrounds </h3>
-        <ul>
-        <% campgrounds.forEach(campground => { %>
-            <li><a href="/campgrounds/<%= campground.id %> "><%= campground.name %></a></li>
-        <% }) %>
-    </ul>
-    </div>
-</div>
-
-
-<%- include("../partials/footer") %> 
+        <% if(campgrounds.length < 1) { %>
+            <h6 class="mt-4 ml-2"><em>No campgrounds submitted yet...</em></h6> 
+            <% } else { %>
+                <ul>
+                    <% campgrounds.forEach(campground => { %>
+                        <li><a href="/campgrounds/<%= campground.id %> "><%= campground.name %></a></li>
+                        <% }) %>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+            
+            
+            <%- include("../partials/footer") %> 
