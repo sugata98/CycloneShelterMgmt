@@ -16,13 +16,22 @@ router.get('/register', function(req, res) {
 //handle sign up logic
 router.post('/register', function(req, res) {
 	var newUser = new User({ username: req.body.username });
+	if (req.body.adminCode === 'secretcode123') {
+		newUser.isAdmin = true;
+	}
 	User.register(newUser, req.body.password, function(err, user) {
 		if (err) {
 			req.flash('error', err.message);
 			return res.redirect('/register');
 		}
 		passport.authenticate('local')(req, res, function() {
-			req.flash('success', 'Welcome to YelpCamp! ' + user.username);
+			if (newUser.isAdmin) {
+				console.log(user.username);
+				req.flash('success', 'Successfully Signed Up to YelpCamp! ' + user.username + ", You're an Admin!");
+			} else {
+				console.log(user.username);
+				req.flash('success', 'Successfully Signed Up to YelpCamp! ' + user.username);
+			}
 			res.redirect('/campgrounds');
 		});
 	});
@@ -34,11 +43,15 @@ router.get('/login', function(req, res) {
 });
 
 //handle login form logic
-router.post(
-	'/login',
-	passport.authenticate('local', { successRedirect: '/campgrounds', failureRedirect: '/login' }),
-	function(req, res) {}
-);
+
+router.post('/login', function(req, res, next) {
+	passport.authenticate('local', {
+		successRedirect: '/campgrounds',
+		failureRedirect: '/login',
+		failureFlash: true,
+		successFlash: 'Welcome to YelpCamp, ' + req.body.username + '!'
+	})(req, res);
+});
 
 //LOGOUT ROUTE
 router.get('/logout', function(req, res) {
