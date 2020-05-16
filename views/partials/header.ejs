@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
 </head>
 <body>
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -34,15 +34,12 @@
                             <li><a href="/logout">Logout</a></li>
                             <% } %>
                         </ul>
-                        <div class="SearchBar">
-                            <form action="/campgrounds" method="GET" class="form-inline">
-                                <div class="form-group">
-                                    <input type="text" name="search" placeholder="Campground Search..." class="form-control">
-                                    <!-- <input type="submit" value="Search" class="btn btn-default"> -->
-                                    <button type="submit" value="Search" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                                </div>
-                            </form>
-                        </div>
+                        <form action="/campgrounds" method="GET" class="navbar-form navbar-right form-inine" role="search">
+                            <div class="form-group">
+                                <input type="text" name="search" placeholder="Campground Search..." class="form-control">
+                            </div>
+                            <button type="submit" value="Search" class="btn btn-default btn-outline-success"><span class="glyphicon glyphicon-search"></span></button>
+                          </form>
                     </div>
                 </div>
             </nav>
