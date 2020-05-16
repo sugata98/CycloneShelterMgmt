@@ -9,6 +9,13 @@
 .delete-form {
 	display: inline;
 }
+
+.SearchBar {
+	float: right;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
 /* Login Page Styling*/
 
 .login-page-form .form-login {

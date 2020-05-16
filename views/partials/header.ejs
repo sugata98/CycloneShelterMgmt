@@ -22,7 +22,7 @@
                 <a class="navbar-brand" href="/"><i class="fas fa-campground"></i>YelpCamp</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav" style="margin-right: 10px;">
                     <li class="<%= typeof page !== 'undefined' && page === 'campgrounds' ? 'active' : '' %>"><a href="/campgrounds">Home</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -34,6 +34,15 @@
                             <li><a href="/logout">Logout</a></li>
                             <% } %>
                         </ul>
+                        <div class="SearchBar">
+                            <form action="/campgrounds" method="GET" class="form-inline">
+                                <div class="form-group">
+                                    <input type="text" name="search" placeholder="Campground Search..." class="form-control">
+                                    <!-- <input type="submit" value="Search" class="btn btn-default"> -->
+                                    <button type="submit" value="Search" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </nav>
