@@ -85,4 +85,34 @@ router.get('/users/:id', function(req, res) {
 	});
 });
 
+//EDIT ROUTE
+router.get('/users/:id/edit', function(req, res) {
+	User.findById(req.params.id, function(err, foundUser) {
+		if (err) {
+			res.redirect('back');
+		} else {
+			res.render('users/edit', { user: foundUser });
+		}
+	});
+});
+
+//Update ROUTE
+router.put('/users/:id', function(req, res) {
+	var newData = {
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
+		email: req.body.email,
+		avatar: req.body.avatar,
+		bio: req.body.bio
+	};
+	User.findByIdAndUpdate(req.params.id, { $set: newData }, function(err, user) {
+		if (err) {
+			res.redirect('back');
+		} else {
+			req.flash('success', 'Profile Updated!');
+			res.redirect('/users/' + user._id);
+		}
+	});
+});
+
 module.exports = router;

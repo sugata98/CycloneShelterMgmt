@@ -7,8 +7,15 @@
             <img src="<%= user.avatar %> " alt="User Profile Image">
             <div class="caption"><a href="mailto:<%= user.email %>"><%= user.email %></a></div>
         </div>
-        <h5>Bio:</h5>
+        <h3>Bio:</h3>
         <p><%= user.bio %></p>
+        <% if(currentUser && user._id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+            <div class = "text-center">
+                 <a class = " btn btn-lg btn-primary" 
+                             href = "/users/<%= user._id %>/edit">
+            Edit Profile </a>
+            </div>
+        <% } %>
     </div>
     <div class="col-md-8">
         <h3><%= user.username %>'s campgrounds </h3>
