@@ -73,3 +73,45 @@
 	background: #eee;
 	cursor: pointer;
 }
+
+#like-popup * {
+	margin: 0;
+	padding: 0;
+}
+
+#like-popup div {
+	margin: 20px;
+}
+
+#like-popup ul {
+	list-style-type: none;
+	width: 466px;
+}
+
+#like-popup h3 {
+	font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+}
+
+#like-popup li {
+	padding: 10px;
+	overflow: auto;
+}
+
+#like-popup li:hover {
+	background: #eee;
+	cursor: pointer;
+}
+
+#total-like-counter {
+	border-radius: 50%;
+	width: 36px;
+	height: 36px;
+	padding-top: 2px;
+
+	background: lightcoral;
+	color: white;
+	text-align: center;
+
+	font: 30px Arial, sans-serif;
+	display: inline-block;
+}
