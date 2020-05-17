@@ -34,3 +34,42 @@
 	border-radius: 10px;
 	margin-right: 10px;
 }
+
+#user-posts-list * {
+	margin: 0;
+	padding: 0;
+}
+
+#user-posts-list div {
+	margin: 20px;
+}
+
+#user-posts-list ul {
+	list-style-type: none;
+	width: 500px;
+}
+
+#user-posts-list h3 {
+	font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+}
+
+#user-posts-list li img {
+	float: left;
+	margin: 0 15px 0 0;
+	height: 70px;
+	width: 70px;
+}
+
+#user-posts-list li p {
+	font: 200 12px/1.5 Georgia, Times New Roman, serif;
+}
+
+#user-posts-list li {
+	padding: 10px;
+	overflow: auto;
+}
+
+#user-posts-list li:hover {
+	background: #eee;
+	cursor: pointer;
+}
