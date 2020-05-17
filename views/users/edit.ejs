@@ -1,9 +1,13 @@
 <%- include("../partials/header") %> 
 
 
-<div class="row">
-    <h1 style="text-align: center;">Edit your Bio</h1>
-    <div style="width:30%; margin:25px auto;">
+<div class="row justify-content-center">
+    <div class="col-md-12 text-center">
+        <h1>Edit your Bio</h1>
+    </div>
+    
+    <div class="col-xs-12 col-md-6 col-lg-6">
+        <div class="form-login">
         <form action="/users/<%= user.id %>?_method=PUT" method="POST">
             <label for="firstName">First Name</label>
             <div class="form-group">
@@ -28,6 +32,7 @@
             </div>
         </form>
         <a href="/users/<%= user.id %>">Go Back</a>
+    </div>
     </div>
     
 </div>

@@ -1,24 +1,25 @@
 <%- include("../partials/header") %> 
 
-<div class="row">
+<div class="row justify-content-center">
     <div class="col-md-4">
-        <h1><%= user.firstName+" "+user.lastName %> </h1>
-        <div class="thumbnail">
-            <img src="<%= user.avatar %> " alt="User Profile Image">
-            <div class="caption"><a href="mailto:<%= user.email %>"><%= user.email %></a></div>
-        </div>
-        <h3>Bio:</h3>
-        <p><%= user.bio %></p>
-        <% if(currentUser && user._id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
-            <div class = "text-center">
-                 <a class = " btn btn-lg btn-primary" 
-                             href = "/users/<%= user._id %>/edit">
-            Edit Profile </a>
+        <div class="card">
+            <img src="<%= user.avatar %> " alt="User Profile Image" class="card-img-top">
+            <div class="card-body">
+                <h1 class="card-title text-center"><%= user.firstName+" "+user.lastName %> </h1>
+                <div class="card-text text-center"><a href="mailto:<%= user.email %>"><%= user.email %></a></div>
+                <h3 class="card-title">Bio:</h3>
+                <p class="card-text"><%= user.bio %></p>
+                <% if(currentUser && user._id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+                    <div class = "text-center">
+                        <a class = " btn btn-lg btn-primary" href = "/users/<%= user._id %>/edit">
+                        Edit Profile </a>
+                    </div>
+                <% } %>
             </div>
-        <% } %>
+        </div>
     </div>
-    <div class="col-md-8">
-        <h3><%= user.username %>'s campgrounds </h3>
+    <div class="container col-md-8">
+        <h3><%= user.username.charAt(0).toUpperCase() + user.username.slice(1)%>'s Campgrounds </h3>
         <% if(campgrounds.length < 1) { %>
             <h6 class="mt-4 ml-2"><em>No campgrounds submitted yet...</em></h6> 
             <% } else { %>
