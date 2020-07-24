@@ -45,7 +45,7 @@
                                     <% if (campground.releifs.slice(-1).pop()==undefined) { %>
                                         Not Defined
                                     <% }else{ %>
-                                        <%= campground.releifs.slice(-1).pop().consumables %> Units
+                                        <%= campground.releifs.slice(-1).pop().consumables %>
                                     <% } %> 
                                     
                                 </h5>
@@ -61,6 +61,13 @@
                 <% if(currentUser && campground.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin ){ %>
                     
                     <a class="btn btn-warning" href="/campgrounds/<%= campground._id %>/releif/new">Add Requirements</a>
+                    <% if (campground.releifs.slice(-1).pop()==undefined) { %>
+                        
+                    <% }else{ %>
+                        <form class="delete-form" action="/campgrounds/<%= campground._id %>/releif/<%= campground.releifs.slice(-1).pop()._id %>?_method=DELETE" method="post">
+                            <input type="submit" value="Delete Latest Requirement" class="btn btn-sm btn-danger">
+                        </form>
+                    <% } %> 
                     
                     <% } %>
                 </div>

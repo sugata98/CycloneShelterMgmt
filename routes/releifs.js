@@ -43,4 +43,15 @@ router.post('/', middleware.isLoggedIn, function(req, res) {
 	});
 });
 
+router.delete('/:releif_id', middleware.checkCampgroundOwnership, function(req, res) {
+	Releif.findByIdAndRemove(req.params.releif_id, function(err) {
+		if (err) {
+			res.redirect('back');
+		} else {
+			req.flash('success', 'Relief Requirement Deleted!');
+			res.redirect('/campgrounds/' + req.params.id + '/releif/');
+		}
+	});
+});
+
 module.exports = router;
