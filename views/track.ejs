@@ -1,0 +1,19 @@
+<%- include("./partials/header") %> 
+
+
+<header class="jumbotron">
+    <div class="container">
+        <h1><i class="fas fa-campground"></i>Track Cyclone Location</h1>
+        <p>Track the cyclone location and related weather info here...</p>
+    </div>
+    
+</header>
+
+<div class="row text-center" style="display:flex; flex-wrap: wrap;">
+    <div class="col-md-12">
+        <iframe style="border-radius: 10px;" width="1105" height="600" src="https://embed.windy.com/embed2.html?lat=22.665&lon=88.336&detailLat=22.570&detailLon=88.350&width=1000&height=700&zoom=8&level=surface&overlay=gustAccu&product=ecmwf&menu=&message=&marker=true&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1" frameborder="0"></iframe>
+        </div>
+        </div>
+        
+        <%- include("./partials/footer") %> 
+        

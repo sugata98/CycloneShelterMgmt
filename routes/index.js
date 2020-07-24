@@ -68,6 +68,11 @@ router.get('/logout', function(req, res) {
 	res.redirect('/campgrounds');
 });
 
+//TRACK Cyclone Location Route
+router.get('/track', function(req, res) {
+	res.render('track');
+});
+
 //USER Profile Route
 router.get('/users/:id', function(req, res) {
 	User.findById(req.params.id, function(err, foundUser) {
@@ -103,7 +108,8 @@ router.put('/users/:id', function(req, res) {
 		lastName: req.body.lastName,
 		email: req.body.email,
 		avatar: req.body.avatar,
-		bio: req.body.bio
+		bio: req.body.bio,
+		phone: req.body.phone
 	};
 	User.findByIdAndUpdate(req.params.id, { $set: newData }, function(err, user) {
 		if (err) {

@@ -1,7 +1,15 @@
 var mongoose = require('mongoose');
 
 var commentSchema = new mongoose.Schema({
-	text: String,
+	userID: String,
+	name: String,
+	gender: String,
+	age: Number,
+	address: String,
+	occupation: String,
+	count: Number,
+	compensate: String,
+	isCompensated: Boolean,
 	createdAt: { type: Date, default: Date.now },
 	author: {
 		id: {

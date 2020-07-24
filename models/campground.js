@@ -6,7 +6,9 @@ var campgroundSchema = new mongoose.Schema({
 	price: Number,
 	image: String,
 	imageId: String,
+	capacity: Number,
 	description: String,
+	address: String,
 	createdAt: { type: Date, default: Date.now },
 	author: {
 		id: {
@@ -19,6 +21,12 @@ var campgroundSchema = new mongoose.Schema({
 		{
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Comment'
+		}
+	],
+	releifs: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Releif'
 		}
 	],
 	likes: [

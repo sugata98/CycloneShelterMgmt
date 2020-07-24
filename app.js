@@ -12,11 +12,12 @@ var express = require('express'),
 	seedDB = require('./seeds');
 
 //requiring routes
-var commentRoutes = require('./routes/comments'),
+var releifRoutes = require('./routes/releifs'),
+	commentRoutes = require('./routes/comments'),
 	campgroundRoutes = require('./routes/campgrounds'),
 	indexRoutes = require('./routes/index');
 
-var url = process.env.DATABASEURL || 'mongodb://localhost:27017/yelp_camp';
+var url = process.env.DATABASEURL || 'mongodb://localhost:27017/cyshelter';
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -51,6 +52,7 @@ app.use(function(req, res, next) {
 app.use('/', indexRoutes);
 app.use('/campgrounds', campgroundRoutes);
 app.use('/campgrounds/:id/comments', commentRoutes);
+app.use('/campgrounds/:id/releif', releifRoutes);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {

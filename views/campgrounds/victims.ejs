@@ -1,0 +1,93 @@
+<%- include("../partials/header") %> 
+<div class="card">
+    <div class="card-header">
+        <div class="float-left">
+            <h2>List of Cyclone Victims</h2>
+        </div>
+        <div class="float-right">
+            <a class="btn btn-success mb-2" href="/campgrounds/<%= campground._id %>/comments/new ">Add Cyclone Victim</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <% console.log(campground) %> 
+        <% campground.comments.forEach(comment=>{ %>
+            <div class="row">
+                <div class="col-md-12 mb-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="card text-white bg-info mb-3">
+                                        <div class="card-header"><i class="fas fa-user"></i> <%= comment.name %></div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <p class="card-text"><i class="fas fa-id-card"></i> <%= comment.userID %></p>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <p class="card-text"><i class="fas fa-briefcase"></i> <%= comment.occupation %></p>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <p class="card-text"><i class="fas fa-rupee-sign"></i> <%= comment.compensate %></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <p class="card-text"><i class="fas fa-venus-mars"></i> <%= comment.gender %></p>
+                                                </div>
+                                                
+                                                <div class="col-lg-4">
+                                                    <p class="card-text"><i class="fas fa-users"></i> <%= comment.count %></p>
+                                                </div>
+                                                
+                                                <div class="col-lg-4">
+                                                    <p class="card-text">
+                                                        <% if (comment.isCompensated) { %>
+                                                            <i class="fas fa-check-circle"></i> Paid
+                                                            <% } else { %>
+                                                                <i class="fas fa-times-circle"></i> Not Paid
+                                                                <% } %> 
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <p class="card-text"><i class="fas fa-birthday-cake"></i> <%= comment.age %></p>
+                                                        </div>
+                                                        <div class="col-lg-8">
+                                                            <p class="card-text"><i class="fas fa-map-marked-alt"></i> <%= comment.address %></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="float-right">
+                                                <p><%= moment(comment.createdAt).fromNow()%></p> 
+                                                <% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+                                                    <div class="float-right">
+                                                        <a href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit" class="btn btn-sm btn-warning mb-2">Edit Bio-Data</a>
+                                                        <form class="delete-form" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" method="post">
+                                                            <input type="submit" value="Delete User" class="btn btn-sm btn-danger mb-2">
+                                                        </form>
+                                                        <a href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/compensate" class="btn btn-sm btn-warning mb-2">Create Compensation Ticket</a>
+                                                    </div>
+                                                <% } %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="float-left">
+                                            
+                                            
+                                            
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %> 
+                    </div>
+                </div>
+<%- include("../partials/footer") %>     

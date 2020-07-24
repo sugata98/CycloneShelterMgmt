@@ -1,0 +1,73 @@
+<%- include("../partials/header") %> 
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-3">
+            <img src="<%= campground.image %>" class="card-img-top" alt="<%= campground.name %>">
+            <div class="card-body">
+                <h5 class="card-title"><%= campground.name %> Requirement Planner</h5>
+                <hr>
+                <div class="row">
+                    <div class="col mb-4">
+                        <div class="card bg-light">
+                            <div class="card-header">Requirements</div>
+                            <div class="card-body">
+                                <h4 class="card-title" style="display:inline-block">
+                                    Drinking Water
+                                    <span class="badge badge-success">
+                                        <p class="card-text" style="display:inline-block; padding:3px">
+                                            <% if (campground.releifs.slice(-1).pop() == undefined) { %>
+                                                0
+                                            <% }else{ %>
+                                                <%= campground.releifs.slice(-1).pop().water %> Litres
+                                            <% } %> 
+                                        </p>
+                                    </span>
+                                </h4>
+                                <h4 class="card-title" style="display:inline-block">
+                                    First Aid Kits
+                                    <span class="badge badge-success">
+                                        <p class="card-text" style="display:inline-block; padding:3px">
+                                            <% if (campground.releifs.slice(-1).pop()==undefined) { %>
+                                                0
+                                            <% }else{ %>
+                                                <%= campground.releifs.slice(-1).pop().kits %> Units
+                                            <% } %> 
+                                            
+                                        </p>
+                                    </span>
+                                </h4>
+                                
+                                <h4 class="card-title">
+                                    Consumables
+                                </h4>
+                                <h5 class="card-text" style="white-space: pre-line;margin-top: -20px;">
+                                    <% if (campground.releifs.slice(-1).pop()==undefined) { %>
+                                        Not Defined
+                                    <% }else{ %>
+                                        <%= campground.releifs.slice(-1).pop().consumables %> Units
+                                    <% } %> 
+                                    
+                                </h5>
+                                <% if (campground.releifs.slice(-1).pop()==undefined) { %>
+                                    Not Defined
+                                <% }else{ %>
+                                    <p>Releif Requirements added <%= moment(campground.releifs.slice(-1).pop().createdAt).fromNow()%></p>
+                                <% } %> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% if(currentUser && campground.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin ){ %>
+                    
+                    <a class="btn btn-warning" href="/campgrounds/<%= campground._id %>/releif/new">Add Requirements</a>
+                    
+                    <% } %>
+                </div>
+            </div> 
+            
+        </div>
+    </div>
+    
+    <%- include("../partials/footer") %> 
+    

@@ -33,7 +33,7 @@ router.post('/', middleware.isLoggedIn, function(req, res) {
 					campground.comments.push(comment);
 					campground.save();
 					req.flash('success', 'Successfully added comment');
-					res.redirect('/campgrounds/' + campground._id);
+					res.redirect('/campgrounds/' + campground._id + '/victims/');
 				}
 			});
 		}
@@ -50,12 +50,23 @@ router.get('/:comment_id/edit', middleware.checkCommentOwnership, function(req, 
 	});
 });
 
+//Add Compensation Info
+router.get('/:comment_id/compensate', middleware.checkCommentOwnership, function(req, res) {
+	Comment.findById(req.params.comment_id, function(err, foundComment) {
+		if (err) {
+			res.redirect('back');
+		} else {
+			res.render('comments/compensate', { campground_id: req.params.id, comment: foundComment });
+		}
+	});
+});
+
 router.put('/:comment_id', middleware.checkCommentOwnership, function(req, res) {
 	Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment) {
 		if (err) {
 			res.redirect('back');
 		} else {
-			res.redirect('/campgrounds/' + req.params.id);
+			res.redirect('/campgrounds/' + req.params.id + '/victims/');
 		}
 	});
 });
@@ -67,7 +78,7 @@ router.delete('/:comment_id', middleware.checkCommentOwnership, function(req, re
 			res.redirect('back');
 		} else {
 			req.flash('success', 'Comment Deleted!');
-			res.redirect('/campgrounds/' + req.params.id);
+			res.redirect('/campgrounds/' + req.params.id + '/victims/');
 		}
 	});
 });

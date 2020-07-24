@@ -19,7 +19,7 @@ var upload = multer({ storage: storage, fileFilter: imageFilter });
 
 var cloudinary = require('cloudinary');
 cloudinary.config({
-	cloud_name: 'sugata',
+	cloud_name: 'cyshelter',
 	api_key: process.env.CLOUDINARY_API_KEY,
 	api_secret: process.env.CLOUDINARY_API_SECRET
 });
@@ -98,6 +98,19 @@ router.get('/:id', function(req, res) {
 router.get('/:id/edit', middleware.checkCampgroundOwnership, function(req, res) {
 	Campground.findById(req.params.id, function(err, foundCampground) {
 		res.render('campgrounds/edit', { campground: foundCampground });
+	});
+});
+
+// Cyclone Victims ROUTE
+router.get('/:id/victims', middleware.checkCampgroundOwnership, function(req, res) {
+	Campground.findById(req.params.id).populate('comments likes').exec(function(err, foundCampground) {
+		res.render('campgrounds/victims', { campground: foundCampground });
+	});
+});
+
+router.get('/:id/releif', middleware.checkCampgroundOwnership, function(req, res) {
+	Campground.findById(req.params.id).populate('releifs').exec(function(err, foundCampground) {
+		res.render('campgrounds/releif', { campground: foundCampground });
 	});
 });
 

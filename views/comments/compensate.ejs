@@ -1,0 +1,36 @@
+<%- include("../partials/header") %> 
+
+
+<div class="row justify-content-center">
+    <div class="col-md-12 text-center">
+        <h1>Add Compensation Info for <%= comment.name %> </h1>
+    </div>
+    
+    <div class="col-xs-12 col-md-6 col-lg-6">
+        <div class="form-login">
+            <form action="/campgrounds/<%= campground_id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
+                <div class="form-group">
+                    <label for="comment[compensate]">Compensation Amount(in Rupees)</label>
+                    <input class="form-control" type="text" name="comment[compensate]" value="<%= comment.compensate %>">
+                </div>
+                <div class="form-group">
+                    <label for="comment[isCompensated]">Compemsation Status</label>
+                    <select name="comment[isCompensated]">
+                        <option hidden disabled selected value> -- select an option -- </option>
+                        <option value="true">The Victim has been Compensated</option>
+                        <option value="false">The Victim is yet to be Compensated</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+                </div>
+            </form>
+            <div class="col-md-12 text-center">
+                <a href="/campgrounds/<%= campground_id %>">Go Back</a>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<%- include("../partials/footer") %> 
