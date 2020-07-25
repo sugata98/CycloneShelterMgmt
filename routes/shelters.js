@@ -107,27 +107,60 @@ router.get('/:id/victims', middleware.checkShelterOwnership, function(req, res) 
 	var perPage = 3;
 	var pageQuery = parseInt(req.query.page);
 	var pageNumber = pageQuery ? pageQuery : 1;
-	Shelter.findById(req.params.id).populate('cyvictims likes').exec(function(err, foundShelter) {
-		const selectVictims = foundShelter.cyvictims;
-		Cyvictim.find({ _id: selectVictims })
-			.skip(perPage * pageNumber - perPage)
-			.limit(perPage)
-			.exec(function(err, allCyvictims) {
-				Cyvictim.count({ _id: selectVictims }).exec(function(err, count) {
-					if (err) {
-						console.log(err);
-					} else {
-						res.render('shelters/victims', {
-							shelter: foundShelter,
-							cyvictims: allCyvictims,
-							current: pageNumber,
-							pages: Math.ceil(count / perPage)
-						});
-					}
+	var noMatch = null;
+	if (req.query.search) {
+		const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+		Shelter.findById(req.params.id).populate('cyvictims likes').exec(function(err, foundShelter) {
+			const selectVictims = foundShelter.cyvictims;
+			Cyvictim.find({ _id: selectVictims, name: regex })
+				.skip(perPage * pageNumber - perPage)
+				.limit(perPage)
+				.exec(function(err, allCyvictims) {
+					Cyvictim.count({ _id: selectVictims, name: regex }).exec(function(err, count) {
+						if (err) {
+							console.log(err);
+							res.redirect('back');
+						} else {
+							if (allCyvictims.length < 1) {
+								noMatch = 'No victims match that query, please try again.';
+							}
+							res.render('shelters/victims', {
+								shelter: foundShelter,
+								cyvictims: allCyvictims,
+								current: pageNumber,
+								pages: Math.ceil(count / perPage),
+								noMatch: noMatch,
+								search: req.query.search
+							});
+						}
+					});
 				});
-			});
-		// res.render('shelters/victims', { shelter: foundShelter });
-	});
+		});
+	} else {
+		// get all campgrounds from DB
+		Shelter.findById(req.params.id).populate('cyvictims likes').exec(function(err, foundShelter) {
+			const selectVictims = foundShelter.cyvictims;
+			Cyvictim.find({ _id: selectVictims })
+				.skip(perPage * pageNumber - perPage)
+				.limit(perPage)
+				.exec(function(err, allCyvictims) {
+					Cyvictim.count({ _id: selectVictims }).exec(function(err, count) {
+						if (err) {
+							console.log(err);
+						} else {
+							res.render('shelters/victims', {
+								shelter: foundShelter,
+								cyvictims: allCyvictims,
+								current: pageNumber,
+								pages: Math.ceil(count / perPage),
+								noMatch: noMatch,
+								search: false
+							});
+						}
+					});
+				});
+		});
+	}
 });
 
 router.get('/:id/releif', middleware.checkShelterOwnership, function(req, res) {

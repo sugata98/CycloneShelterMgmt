@@ -1,14 +1,34 @@
 <%- include("../partials/header") %> 
 <div class="card">
     <div class="card-header">
-        <div class="float-left">
-            <h2>List of Cyclone Victims</h2>
+        <div class="row">
+            <div class="col-md-7">
+                <h2>List of Cyclone Victims</h2>
+            </div>
+            <div class="col-md-5">
+                <div class="float-left">
+                    <form class="form-inline mt-2 mt-md-0" role="search" action="/shelters/<%= shelter._id %>/victims" method="GET">
+                        <div class="form-group">
+                            <input class="form-control mr-sm-2" type="text" name="search" placeholder="Search Cyclone Victim..." aria-label="Search" style="border-radius: 5px;">
+                        </div>
+                        <button id="search-nav" type="submit" value="Search" class="btn btn-outline-success my-2 my-sm-0"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="float-right">
+                    <a class="btn btn-success mb-2" href="/shelters/<%= shelter._id %>/cyvictims/new ">Add Cyclone Victim</a>
+                    
+                </div>
+                
+            </div>
         </div>
-        <div class="float-right">
-            <a class="btn btn-success mb-2" href="/shelters/<%= shelter._id %>/cyvictims/new ">Add Cyclone Victim</a>
-        </div>
+        
     </div>
     <div class="card-body">
+        <div class="col-md-12">
+            <% if(noMatch != null){ %> 
+                <h3> <%= noMatch %>  </h3>
+                <% } %> 
+        </div>
         <% cyvictims.forEach(cyvictim=>{ %>
             <div class="row">
                 <div class="col-md-12 mb-2">
@@ -71,16 +91,10 @@
                                                         </form>
                                                         <a href="/shelters/<%= shelter._id %>/cyvictims/<%= cyvictim._id %>/compensate" class="btn btn-sm btn-warning mb-2">Create Compensation Ticket</a>
                                                     </div>
-                                                <% } %>
+                                                    <% } %>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="float-left">
-                                            
-                                            
-                                            
-                                        </div>
-                                        
                                         
                                     </div>
                                 </div>
@@ -94,13 +108,13 @@
                             <% if (current == 1) { %>
                             <li class="page-item disabled"><a class="page-link">First</a></li>
                             <% } else { %>
-                            <li><a class="page-link" href="/shelters/<%= shelter._id %>/victims/">First</a></li>
+                            <li><a class="page-link" href="/shelters/<%= shelter._id %>/victims<%if(search){%>?search=<%=search%><%}%>">First</a></li>
                             <% } %>
                      
                             <% if (current == 1) { %>
                             <li class="page-item disabled"><a class="page-link">«</a></li>
                             <% } else { %>
-                            <li><a class="page-link" href="/shelters/<%= shelter._id %>/victims?page=<%= Number(current) - 1 %>">«</a></li>
+                            <li><a class="page-link" href="/shelters/<%= shelter._id %>/victims?page=<%= Number(current) - 1 %><%if(search){%>&search=<%=search%><%}%>">«</a></li>
                             <% } %>
                      
                             <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
@@ -111,7 +125,7 @@
                             <% if (i == current) { %>
                             <li class="active"><a class="page-link"><%= i %></a></li>
                             <% } else { %>
-                            <li><a class="page-link" href="/shelters/<%= shelter._id %>/victims?page=<%= i %>"><%= i %></a></li>
+                            <li><a class="page-link" href="/shelters/<%= shelter._id %>/victims?page=<%= i %><%if(search){%>&search=<%=search%><%}%>"><%= i %></a></li>
                             <% } %>
                             <% if (i == Number(current) + 4 && i < pages) { %>
                             <li class="page-item disabled"><a class="page-link">...</a></li>
@@ -121,16 +135,16 @@
                             <% if (current == pages) { %>
                             <li class="page-item disabled"><a class="page-link">»</a></li>
                             <% } else { %>
-                            <li><a class="page-link" href="/shelters/<%= shelter._id %>/victims?page=<%= Number(current) + 1 %>">»</a></li>
+                            <li><a class="page-link" href="/shelters/<%= shelter._id %>/victims?page=<%= Number(current) + 1 %><%if(search){%>&search=<%=search%><%}%>">»</a></li>
                             <% } %>
                      
                             <% if (current == pages) { %>
                             <li class="page-item disabled"><a class="page-link">Last</a></li>
                             <% } else { %>
-                            <li><a class="page-link" href="/shelters/<%= shelter._id %>/victims?page=<%= pages %>">Last</a></li>
+                            <li><a class="page-link" href="/shelters/<%= shelter._id %>/victims?page=<%= pages %><%if(search){%>&search=<%=search%><%}%>">Last</a></li>
                             <% } %>
                         </ul>
                         <% } %>
                     </nav>
-                </div>
+</div>
 <%- include("../partials/footer") %>     
