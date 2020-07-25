@@ -16,7 +16,7 @@ var releifRoutes = require('./routes/releifs'),
 	shelterRoutes = require('./routes/shelters'),
 	indexRoutes = require('./routes/index');
 
-var url = process.env.DATABASEURL || 'mongodb://localhost:27017/cyshelter';
+var url = process.env.MONGODB_URI || 'mongodb://localhost:27017/cyshelter';
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -31,7 +31,7 @@ app.locals.moment = require('moment');
 //PASSPORT CONFIG
 app.use(
 	require('express-session')({
-		secret: 'Once again Rusty eins cutest dog!',
+		secret: 'Webel intern has been a good ecperience!',
 		resave: false,
 		saveUninitialized: false
 	})
