@@ -1,14 +1,19 @@
 <%- include("../partials/header") %> 
 
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-4">
         <div class="list-group">
             <li class="list-group-item active">Emergency Contact Information</li>
             <li class="list-group-item">+91-935-5511-433</li>
             <li class="list-group-item">+91-755-5414-278</li>
         </div>
+        <hr>
+        <div class="list-group">
+            <% const mapsURI = campground.address.replace( /[\r\n]+/gm, "" ); %>
+            <iframe width="350px" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=<%= mapsURI %>&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="border-radius: 5px;"></iframe>
+        </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-8">
         <div class="card mb-3">
             <img src="<%= campground.image %>" class="card-img-top" alt="<%= campground.name %>">
             <div class="card-body">

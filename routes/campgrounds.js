@@ -133,7 +133,8 @@ router.put('/:id', middleware.checkCampgroundOwnership, upload.single('image'), 
 			}
 			campground.name = req.body.campground.name;
 			campground.description = req.body.campground.description;
-			campground.price = req.body.campground.price;
+			campground.capacity = req.body.campground.capacity;
+			campground.address = req.body.campground.address;
 			campground.save();
 			req.flash('success', 'Successfully Updated!');
 			res.redirect('/campgrounds/' + req.params.id);
