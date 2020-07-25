@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var User = require('../models/user');
-var Campground = require('../models/campground');
+var Shelter = require('../models/shelter');
 
 //root route
 router.get('/', function(req, res) {
@@ -35,12 +35,12 @@ router.post('/register', function(req, res) {
 		passport.authenticate('local')(req, res, function() {
 			if (newUser.isAdmin) {
 				console.log(user.username);
-				req.flash('success', 'Successfully Signed Up to YelpCamp! ' + user.username + ", You're an Admin!");
+				req.flash('success', 'Successfully Signed Up to CyShelter! ' + user.username + ", You're an Admin!");
 			} else {
 				console.log(user.username);
-				req.flash('success', 'Successfully Signed Up to YelpCamp! ' + user.username);
+				req.flash('success', 'Successfully Signed Up to CyShelter! ' + user.username);
 			}
-			res.redirect('/campgrounds');
+			res.redirect('/shelters');
 		});
 	});
 });
@@ -54,10 +54,10 @@ router.get('/login', function(req, res) {
 
 router.post('/login', function(req, res, next) {
 	passport.authenticate('local', {
-		successRedirect: '/campgrounds',
+		successRedirect: '/shelters',
 		failureRedirect: '/login',
 		failureFlash: true,
-		successFlash: 'Welcome to YelpCamp, ' + req.body.username + '!'
+		successFlash: 'Welcome to CyShelter, ' + req.body.username + '!'
 	})(req, res);
 });
 
@@ -65,7 +65,7 @@ router.post('/login', function(req, res, next) {
 router.get('/logout', function(req, res) {
 	req.logout();
 	req.flash('success', 'Logged you out!');
-	res.redirect('/campgrounds');
+	res.redirect('/shelters');
 });
 
 //TRACK Cyclone Location Route
@@ -80,12 +80,12 @@ router.get('/users/:id', function(req, res) {
 			req.flash('error', 'Something went wrong');
 			return res.redirect('/');
 		}
-		Campground.find().where('author.id').equals(foundUser._id).exec(function(err, campgrounds) {
+		Shelter.find().where('author.id').equals(foundUser._id).exec(function(err, shelters) {
 			if (err) {
 				req.flash('error', 'Something went wrong');
 				return res.redirect('/');
 			}
-			res.render('users/show', { user: foundUser, campgrounds: campgrounds });
+			res.render('users/show', { user: foundUser, shelters: shelters });
 		});
 	});
 });

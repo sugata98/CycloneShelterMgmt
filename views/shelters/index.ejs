@@ -3,16 +3,16 @@
 
 <header class="jumbotron">
     <div class="container">
-        <h1><i class="fas fa-campground"></i>Welcome to CyShelter!</h1>
+        <h1><i class="fas fa-shelter"></i>Welcome to CyShelter!</h1>
         <p>A Cyclone Shelter Management Site...</p>
         <p>
-            <a class="btn btn-primary btn-lg" href="/campgrounds/new">Add New Cyclone Shelter</a>
+            <a class="btn btn-primary btn-lg" href="/shelters/new">Add New Cyclone Shelter</a>
             <a class="btn btn-primary btn-lg" href="/track">Track Cyclone Location</a>
         </p>
         <!-- <p>
-            <form action="/campgrounds" method="GET" class="form-inline">
+            <form action="/shelters" method="GET" class="form-inline">
                 <div class="form-group">
-                    <input type="text" name="search" placeholder="Campground Search..." class="form-control">
+                    <input type="text" name="search" placeholder="Shelter Search..." class="form-control">
                     <input type="submit" value="Search" class="btn btn-default">
                 </div>
             </form>
@@ -27,13 +27,13 @@
             <h3> <%= noMatch %>  </h3>
             <% } %> 
         </div>
-        <% campgrounds.forEach(campground => { %>
+        <% shelters.forEach(shelter => { %>
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img src="<%= campground.image %>" class="card-img-top" alt="<%= campground.name %>">
+                    <img src="<%= shelter.image %>" class="card-img-top" alt="<%= shelter.name %>">
                     <div class="card-body text-center">
-                        <h5 class="card-title mb-0"><%= campground.name %></h5>
-                        <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">More Info</a>
+                        <h5 class="card-title mb-0"><%= shelter.name %></h5>
+                        <a href="/shelters/<%= shelter._id %>" class="btn btn-primary">More Info</a>
                             
                     </div>
                 </div>   

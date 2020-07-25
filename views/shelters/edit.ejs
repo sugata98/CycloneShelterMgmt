@@ -1,0 +1,51 @@
+<%- include("../partials/header") %> 
+
+<div class="row justify-content-center">
+    <div class="col-md-12 text-center">
+        <h1>Edit <%= shelter.name %> </h1>
+    </div>
+    <div class="col-xs-12 col-md-6 col-lg-6">
+        <div class="form-login">
+        <form action="/shelters/<%= shelter._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="shelter[name]">Shelter Name</label>
+                <input class="form-control" type="text" name="shelter[name]" value="<%= shelter.name %> ">
+            </div>
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input type="file" id="image" name="image" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="shelter[capacity]">Shelter Capacity</label>
+                <input class="form-control" type="number" name="shelter[capacity]" value="<%= shelter.capacity %>">
+            </div>
+            <div class="form-group">
+                <label for="shelter[phno]">Shelter Contact Info</label>
+                <input class="form-control" type="tel" name="shelter[phno]" value="<%= shelter.phno %>">
+            </div>
+            <div class="form-group">
+                <label for="shelter[altphno]">Shelter Alt Contact Info</label>
+                <input class="form-control" type="tel" name="shelter[altphno]" value="<%= shelter.altphno %>">
+            </div>
+            <div class="form-group">
+                <label for="shelter[description]">Shelter Description</label>
+                <textarea class="form-control" name="shelter[description]" rows="4" style="white-space: pre-line;"><%= shelter.description %></textarea>
+            </div>
+            <div class="form-group">
+                <label for="shelter[address]">Shelter Address</label>
+                <textarea class="form-control" name="shelter[address]" rows="4" style="white-space: pre-line;"><%= shelter.address %></textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+            </div>
+        </form>
+        <div class="col-md-12 text-center">
+            <a href="/shelters/<%= shelter._id %>">Go Back</a>
+        </div>
+        
+    </div>
+    </div>
+    
+</div>
+
+<%- include("../partials/footer") %> 

@@ -1,11 +1,13 @@
 var mongoose = require('mongoose');
 
 //SCHEMA SETUP
-var campgroundSchema = new mongoose.Schema({
+var shelterSchema = new mongoose.Schema({
 	name: String,
 	image: String,
 	imageId: String,
 	capacity: Number,
+	phno: String,
+	altphno: String,
 	description: String,
 	address: String,
 	createdAt: { type: Date, default: Date.now },
@@ -16,10 +18,10 @@ var campgroundSchema = new mongoose.Schema({
 		},
 		username: String
 	},
-	comments: [
+	cyvictims: [
 		{
 			type: mongoose.Schema.Types.ObjectId,
-			ref: 'Comment'
+			ref: 'Cyvictim'
 		}
 	],
 	releifs: [
@@ -36,4 +38,4 @@ var campgroundSchema = new mongoose.Schema({
 	]
 });
 
-module.exports = mongoose.model('Campground', campgroundSchema);
+module.exports = mongoose.model('Shelter', shelterSchema);

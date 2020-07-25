@@ -1,0 +1,64 @@
+<%- include("../partials/header") %> 
+
+<% var ID = function () { return Math.random().toString(36).substr(2, 9);}; %>
+
+
+<div class="row justify-content-center">
+    <div class="col-md-12 text-center">
+        <h1>Add New Cyclone Victim to <%= shelter.name %> </h1>
+    </div>
+    
+    <div class="col-xs-12 col-md-6 col-lg-6">
+        <div class="form-login">
+        <form action="/shelters/<%= shelter._id %>/cyvictims" method="POST">
+            <div class="form-group">
+                <label for="cyvictim[userID]">ID</label>
+                <input class="form-control" type="text" name="cyvictim[userID]" value="<%=ID()%>" readonly>
+            </div>
+            <div class="form-group">
+                <label for="cyvictim[name]">Name</label>
+                <input class="form-control" type="text" name="cyvictim[name]" placeholder="Name">
+            </div>
+            <div class="form-group">
+                <label for="cyvictim[gender]">Gender</label>
+                <select name="cyvictim[gender]" class="form-control">
+                    <option hidden disabled selected value> -- select an option -- </option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Others">Others</option>
+                </select>
+                <!-- <input class="form-control" type="radio" name="cyvictim[gender]" placeholder="Name"> -->
+            </div>
+            <div class="form-group">
+                <label for="cyvictim[age]">Age</label>
+                <input class="form-control" type="number" name="cyvictim[age]" placeholder="Age" min="1">
+            </div>
+            <div class="form-group">
+                <label for="cyvictim[address]">Address</label>
+                <input class="form-control" type="text" name="cyvictim[address]" placeholder="Victim's Address">
+            </div>
+            <div class="form-group">
+                <label for="cyvictim[occupation]">Occupation</label>
+                <input class="form-control" type="text" name="cyvictim[occupation]" placeholder="Victim's Occupation">
+            </div>
+            <div class="form-group">
+                <label for="cyvictim[count]">Family Members' Count</label>
+                <input class="form-control" type="number" name="cyvictim[count]" placeholder="Number of members in Family" min="1">
+            </div>
+            <!-- <div class="form-group">
+                <label for="cyvictim[text]">Add Cyvictim</label>
+                <input class="form-control" type="text" name="cyvictim[text]" placeholder="text">
+            </div> -->
+            <div class="form-group">
+                <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+            </div>
+        </form>
+        <div class="col-md-12 text-center">
+        <a href="/shelters/<%= shelter._id %>">Go Back</a>
+    </div>
+    </div>
+    </div>
+    
+</div>
+
+<%- include("../partials/footer") %> 

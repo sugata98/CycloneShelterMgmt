@@ -3,9 +3,9 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card mb-3">
-            <img src="<%= campground.image %>" class="card-img-top" alt="<%= campground.name %>">
+            <img src="<%= shelter.image %>" class="card-img-top" alt="<%= shelter.name %>">
             <div class="card-body">
-                <h5 class="card-title"><%= campground.name %> Requirement Planner</h5>
+                <h5 class="card-title"><%= shelter.name %> Requirement Planner</h5>
                 <hr>
                 <div class="row">
                     <div class="col mb-4">
@@ -16,10 +16,10 @@
                                     Drinking Water
                                     <span class="badge badge-success">
                                         <p class="card-text" style="display:inline-block; padding:3px">
-                                            <% if (campground.releifs.slice(-1).pop() == undefined) { %>
+                                            <% if (shelter.releifs.slice(-1).pop() == undefined) { %>
                                                 0
                                             <% }else{ %>
-                                                <%= campground.releifs.slice(-1).pop().water %> Litres
+                                                <%= shelter.releifs.slice(-1).pop().water %> Litres
                                             <% } %> 
                                         </p>
                                     </span>
@@ -28,10 +28,10 @@
                                     First Aid Kits
                                     <span class="badge badge-success">
                                         <p class="card-text" style="display:inline-block; padding:3px">
-                                            <% if (campground.releifs.slice(-1).pop()==undefined) { %>
+                                            <% if (shelter.releifs.slice(-1).pop()==undefined) { %>
                                                 0
                                             <% }else{ %>
-                                                <%= campground.releifs.slice(-1).pop().kits %> Units
+                                                <%= shelter.releifs.slice(-1).pop().kits %> Units
                                             <% } %> 
                                             
                                         </p>
@@ -42,30 +42,30 @@
                                     Consumables
                                 </h4>
                                 <h5 class="card-text" style="white-space: pre-line;margin-top: -20px;">
-                                    <% if (campground.releifs.slice(-1).pop()==undefined) { %>
+                                    <% if (shelter.releifs.slice(-1).pop()==undefined) { %>
                                         Not Defined
                                     <% }else{ %>
-                                        <%= campground.releifs.slice(-1).pop().consumables %>
+                                        <%= shelter.releifs.slice(-1).pop().consumables %>
                                     <% } %> 
                                     
                                 </h5>
-                                <% if (campground.releifs.slice(-1).pop()==undefined) { %>
+                                <% if (shelter.releifs.slice(-1).pop()==undefined) { %>
                                     Not Defined
                                 <% }else{ %>
-                                    <p>Releif Requirements added <%= moment(campground.releifs.slice(-1).pop().createdAt).fromNow()%></p>
+                                    <p>Releif Requirements added <%= moment(shelter.releifs.slice(-1).pop().createdAt).fromNow()%></p>
                                 <% } %> 
                             </div>
                         </div>
                     </div>
                 </div>
-                <% if(currentUser && campground.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin ){ %>
+                <% if(currentUser && shelter.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin ){ %>
                     
-                    <a class="btn btn-warning" href="/campgrounds/<%= campground._id %>/releif/new">Add Requirements</a>
-                    <% if (campground.releifs.slice(-1).pop()==undefined) { %>
+                    <a class="btn btn-warning" href="/shelters/<%= shelter._id %>/releif/new">Add Requirements</a>
+                    <% if (shelter.releifs.slice(-1).pop()==undefined) { %>
                         
                     <% }else{ %>
-                        <form class="delete-form" action="/campgrounds/<%= campground._id %>/releif/<%= campground.releifs.slice(-1).pop()._id %>?_method=DELETE" method="post">
-                            <input type="submit" value="Delete Latest Requirement" class="btn btn-sm btn-danger">
+                        <form class="delete-form" action="/shelters/<%= shelter._id %>/releif/<%= shelter.releifs.slice(-1).pop()._id %>?_method=DELETE" method="post">
+                            <input type="submit" value="Delete Latest Requirement" class="btn btn-danger">
                         </form>
                     <% } %> 
                     

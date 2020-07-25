@@ -1,26 +1,26 @@
 var express = require('express');
 var router = express.Router({ mergeParams: true });
-var Campground = require('../models/campground');
+var Shelter = require('../models/shelter');
 var Releif = require('../models/releif');
 var middleware = require('../middleware');
 
-//Comments New
+//Cyvictims New
 router.get('/new', middleware.isLoggedIn, function(req, res) {
-	Campground.findById(req.params.id, function(err, campground) {
+	Shelter.findById(req.params.id, function(err, shelter) {
 		if (err) {
 			console.log(err);
 		} else {
-			res.render('campgrounds/releifnew', { campground: campground });
+			res.render('shelters/releifnew', { shelter: shelter });
 		}
 	});
 });
 
-//Comments Create
+//Cyvictims Create
 router.post('/', middleware.isLoggedIn, function(req, res) {
-	Campground.findById(req.params.id, function(err, campground) {
+	Shelter.findById(req.params.id, function(err, shelter) {
 		if (err) {
 			console.log(err);
-			redirect('/campgrounds');
+			redirect('/shelters');
 		} else {
 			Releif.create(req.body.releif, function(err, releif) {
 				if (err) {
@@ -31,25 +31,25 @@ router.post('/', middleware.isLoggedIn, function(req, res) {
 					releif.author.id = req.user._id;
 					releif.author.username = req.user.username;
 					releif.save();
-					campground.releifs.pop;
-					campground.releifs.push(releif);
-					// console.log(campground);
-					campground.save();
+					shelter.releifs.pop;
+					shelter.releifs.push(releif);
+					// console.log(shelter);
+					shelter.save();
 					req.flash('success', 'Successfully added releif');
-					res.redirect('/campgrounds/' + campground._id + '/releif/');
+					res.redirect('/shelters/' + shelter._id + '/releif/');
 				}
 			});
 		}
 	});
 });
 
-router.delete('/:releif_id', middleware.checkCampgroundOwnership, function(req, res) {
+router.delete('/:releif_id', middleware.checkShelterOwnership, function(req, res) {
 	Releif.findByIdAndRemove(req.params.releif_id, function(err) {
 		if (err) {
 			res.redirect('back');
 		} else {
 			req.flash('success', 'Relief Requirement Deleted!');
-			res.redirect('/campgrounds/' + req.params.id + '/releif/');
+			res.redirect('/shelters/' + req.params.id + '/releif/');
 		}
 	});
 });

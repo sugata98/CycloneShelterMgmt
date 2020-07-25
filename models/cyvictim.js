@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var commentSchema = new mongoose.Schema({
+var cyvictimSchema = new mongoose.Schema({
 	userID: String,
 	name: String,
 	gender: String,
@@ -20,4 +20,4 @@ var commentSchema = new mongoose.Schema({
 	}
 });
 
-module.exports = mongoose.model('Comment', commentSchema);
+module.exports = mongoose.model('Cyvictim', cyvictimSchema);

@@ -1,0 +1,49 @@
+<%- include("../partials/header") %> 
+
+    <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+            <h1 style="text-align: center">Create a New Cyclone Shelter</h1>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <div class="form-login">
+            <form action="/shelters" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="shelter[name]">Cyclone Shelter Name</label>
+                    <input class="form-control" type="text" name="shelter[name]" placeholder="name">
+                </div>
+                <div class="form-group">
+                    <label for="image">Image</label>
+                    <input type="file" id="image" name="image" accept="image/*" required>
+                </div>
+                <div class="form-group">
+                    <label for="shelter[capacity]">Shelter Capacity</label>
+                    <input class="form-control" type="number" name="shelter[capacity]" placeholder="Capacity in terms of Number of People">
+                </div>
+                <div class="form-group">
+                    <label for="shelter[phno]">Shelter Contact Info</label>
+                    <input class="form-control" type="tel" name="shelter[phno]" placeholder="(+91)-Your 10 digit phone number">
+                </div>
+                <div class="form-group">
+                    <label for="shelter[altphno]">Shelter Alt Contact Info</label>
+                    <input class="form-control" type="tel" name="shelter[altphno]" placeholder="(+91)-Your 10 digit phone number">
+                </div>
+                <div cla
+                <div class="form-group">
+                    <label for="shelter[description]">Shelter Description</label>
+                    <textarea class="form-control" name="shelter[description]" rows="4" placeholder="More info about the shelter like Area" style="white-space: pre-line;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="shelter[address]">Shelter Address</label>
+                    <textarea class="form-control" name="shelter[address]" rows="4" placeholder="Full Address of the Shelter" style="white-space: pre-line;"></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+                </div>
+            </form>
+            <div class="col-md-12 text-center">
+            <a href="/shelters">Go Back</a>
+            </div>
+            </div>
+        </div>
+    </div>
+    <%- include("../partials/footer") %> 

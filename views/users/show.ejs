@@ -20,20 +20,20 @@
         </div>
     </div>
     <div class="col-md-8">
-        <h3><%= user.username.charAt(0).toUpperCase() + user.username.slice(1)%>'s Campgrounds </h3>
+        <h3><%= user.username.charAt(0).toUpperCase() + user.username.slice(1)%>'s Shelters </h3>
         
                 </ul>
                 <div id="user-posts-list">
                     <ul>
-                        <% if(campgrounds.length < 1) { %>
-                            <h6 class="mt-4 ml-2"><em>No campgrounds submitted yet...</em></h6> 
+                        <% if(shelters.length < 1) { %>
+                            <h6 class="mt-4 ml-2"><em>No shelters submitted yet...</em></h6> 
                         <% } else { %>
                             <ul>
-                                <% campgrounds.forEach(campground => { %>
+                                <% shelters.forEach(shelter => { %>
                                     <li>
-                                        <img class="img-thumbnail" src="<%= campground.image %>" />
-                                        <h3><a href="/campgrounds/<%= campground.id %>"><%= campground.name %></a></h3>
-                                        <p><%= campground.description.substring(0,130) %>...</p>
+                                        <img class="img-thumbnail" src="<%= shelter.image %>" />
+                                        <h3><a href="/shelters/<%= shelter.id %>"><%= shelter.name %></a></h3>
+                                        <p><%= shelter.description.substring(0,130) %>...</p>
                                     </li>
                                 <% }) %>
                         <% } %>

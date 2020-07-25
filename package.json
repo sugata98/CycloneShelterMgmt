@@ -1,7 +1,7 @@
 {
-	"name": "v10",
+	"name": "cyshelter",
 	"version": "1.0.0",
-	"description": "Yelp Camp V10",
+	"description": "CyShelter-A cyclone shelter management web app",
 	"main": "app.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",

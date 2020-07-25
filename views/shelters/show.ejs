@@ -4,22 +4,22 @@
     <div class="col-md-4">
         <div class="list-group">
             <li class="list-group-item active">Emergency Contact Information</li>
-            <li class="list-group-item">+91-935-5511-433</li>
-            <li class="list-group-item">+91-755-5414-278</li>
+            <li class="list-group-item"><%= shelter.phno %> </li>
+            <li class="list-group-item"><%= shelter.altphno %></li>
         </div>
         <hr>
         <div class="list-group">
-            <% const mapsURI = campground.address.replace( /[\r\n]+/gm, "" ); %>
+            <% const mapsURI = shelter.address.replace( /[\r\n]+/gm, "" ); %>
             <iframe width="350px" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=<%= mapsURI %>&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" style="border-radius: 5px;"></iframe>
         </div>
     </div>
     <div class="col-md-8">
         <div class="card mb-3">
-            <img src="<%= campground.image %>" class="card-img-top" alt="<%= campground.name %>">
+            <img src="<%= shelter.image %>" class="card-img-top" alt="<%= shelter.name %>">
             <div class="card-body">
-                <h5 class="card-title"><%= campground.name %></h5>
+                <h5 class="card-title"><%= shelter.name %></h5>
                 <p>
-                    <em>Added and Managed by <a href="/users/<%= campground.author.id %>"><%= campground.author.username %></a>, <%= moment(campground.createdAt).fromNow() %></em>
+                    <em>Added and Managed by <a href="/users/<%= shelter.author.id %>"><%= shelter.author.username %></a>, <%= moment(shelter.createdAt).fromNow() %></em>
                 </p>
                 <hr>
                 <div class="row">
@@ -31,7 +31,7 @@
                                     Shelter Capacity
                                     <span class="badge badge-success">
                                         <p class="card-text" style="display:inline-block; padding:3px">
-                                            <%= campground.capacity %> Pax 
+                                            <%= shelter.capacity %> Pax 
                                         </p>
                                     </span>
                                 </h4>
@@ -40,7 +40,7 @@
                                     Additional Info
                                 </h4>
                                 <p class="card-text" style="white-space: pre-line;margin-top: -20px;">
-                                    <%= campground.description %> 
+                                    <%= shelter.description %> 
                                 </p>
                             </div>
                         </div>
@@ -50,19 +50,19 @@
                             <div class="card-header"> Shelter Full Address</div>
                             <div class="card-body">
                                 <p class="card-text" style="white-space: pre-line; margin-top: -20px;">
-                                    <%= campground.address %> 
+                                    <%= shelter.address %> 
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <% if(currentUser && campground.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin ){ %>
-                    <a class="btn btn-warning mb-2" href="/campgrounds/<%= campground._id %>/edit">Edit Shelter Info</a>
-                    <form class="delete-form" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="post">
+                <% if(currentUser && shelter.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin ){ %>
+                    <a class="btn btn-warning mb-2" href="/shelters/<%= shelter._id %>/edit">Edit Shelter Info</a>
+                    <form class="delete-form" action="/shelters/<%= shelter._id %>?_method=DELETE" method="post">
                         <button class="btn btn-danger mb-2">Delete Shelter</button>
                     </form>
-                    <a class="btn btn-primary mb-2" href="/campgrounds/<%= campground._id %>/releif">Releif Planner</a>
-                    <a class="btn btn-success mb-2" href="/campgrounds/<%= campground._id %>/victims ">Manage Cyclone Victims</a>
+                    <a class="btn btn-primary mb-2" href="/shelters/<%= shelter._id %>/releif">Releif Planner</a>
+                    <a class="btn btn-success mb-2" href="/shelters/<%= shelter._id %>/victims ">Manage Cyclone Victims</a>
                     <% } %> 
                 </div>
             </div>

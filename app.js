@@ -3,18 +3,17 @@ var express = require('express'),
 	bodyParser = require('body-parser'),
 	mongoose = require('mongoose'),
 	flash = require('connect-flash'),
-	Campground = require('./models/campground'),
-	Comment = require('./models/comment'),
+	Shelter = require('./models/shelter'),
+	Cyvictim = require('./models/cyvictim'),
 	methodOverride = require('method-override'),
 	passport = require('passport'),
 	LocalStrategy = require('passport-local'),
-	User = require('./models/user'),
-	seedDB = require('./seeds');
+	User = require('./models/user');
 
 //requiring routes
 var releifRoutes = require('./routes/releifs'),
-	commentRoutes = require('./routes/comments'),
-	campgroundRoutes = require('./routes/campgrounds'),
+	cyvictimRoutes = require('./routes/cyvictims'),
+	shelterRoutes = require('./routes/shelters'),
 	indexRoutes = require('./routes/index');
 
 var url = process.env.DATABASEURL || 'mongodb://localhost:27017/cyshelter';
@@ -50,11 +49,11 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', indexRoutes);
-app.use('/campgrounds', campgroundRoutes);
-app.use('/campgrounds/:id/comments', commentRoutes);
-app.use('/campgrounds/:id/releif', releifRoutes);
+app.use('/shelters', shelterRoutes);
+app.use('/shelters/:id/cyvictims', cyvictimRoutes);
+app.use('/shelters/:id/releif', releifRoutes);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
-	console.log('YelpCamp Server Has Started!');
+	console.log('CyShelter Server Has Started!');
 });
