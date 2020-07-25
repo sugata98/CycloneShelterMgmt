@@ -35,7 +35,7 @@ router.post('/', middleware.isLoggedIn, function(req, res) {
 					shelter.releifs.push(releif);
 					// console.log(shelter);
 					shelter.save();
-					req.flash('success', 'Successfully added releif');
+					req.flash('success', 'Successfully added Releif');
 					res.redirect('/shelters/' + shelter._id + '/releif/');
 				}
 			});

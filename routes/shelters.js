@@ -104,7 +104,7 @@ router.get('/:id/edit', middleware.checkShelterOwnership, function(req, res) {
 
 // Cyclone Victims ROUTE
 router.get('/:id/victims', middleware.checkShelterOwnership, function(req, res) {
-	var perPage = 2;
+	var perPage = 3;
 	var pageQuery = parseInt(req.query.page);
 	var pageNumber = pageQuery ? pageQuery : 1;
 	Shelter.findById(req.params.id).populate('cyvictims likes').exec(function(err, foundShelter) {
@@ -113,7 +113,7 @@ router.get('/:id/victims', middleware.checkShelterOwnership, function(req, res) 
 			.skip(perPage * pageNumber - perPage)
 			.limit(perPage)
 			.exec(function(err, allCyvictims) {
-				Cyvictim.count().exec(function(err, count) {
+				Cyvictim.count({ _id: selectVictims }).exec(function(err, count) {
 					if (err) {
 						console.log(err);
 					} else {

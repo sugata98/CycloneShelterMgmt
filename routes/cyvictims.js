@@ -32,7 +32,7 @@ router.post('/', middleware.isLoggedIn, function(req, res) {
 					cyvictim.save();
 					shelter.cyvictims.push(cyvictim);
 					shelter.save();
-					req.flash('success', 'Successfully added cyvictim');
+					req.flash('success', 'Successfully added Cyclone Victim to ' + shelter.name);
 					res.redirect('/shelters/' + shelter._id + '/victims/');
 				}
 			});
@@ -77,7 +77,7 @@ router.delete('/:cyvictim_id', middleware.checkCyvictimOwnership, function(req, 
 		if (err) {
 			res.redirect('back');
 		} else {
-			req.flash('success', 'Cyvictim Deleted!');
+			req.flash('success', 'Cylone Victim Deleted!');
 			res.redirect('/shelters/' + req.params.id + '/victims/');
 		}
 	});
