@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Shelter = require('../models/shelter');
+var Cyvictim = require('../models/cyvictim');
 var middleware = require('../middleware');
 var multer = require('multer');
 var storage = multer.diskStorage({
@@ -103,8 +104,29 @@ router.get('/:id/edit', middleware.checkShelterOwnership, function(req, res) {
 
 // Cyclone Victims ROUTE
 router.get('/:id/victims', middleware.checkShelterOwnership, function(req, res) {
+	var perPage = 2;
+	var pageQuery = parseInt(req.query.page);
+	var pageNumber = pageQuery ? pageQuery : 1;
 	Shelter.findById(req.params.id).populate('cyvictims likes').exec(function(err, foundShelter) {
-		res.render('shelters/victims', { shelter: foundShelter });
+		const selectVictims = foundShelter.cyvictims;
+		Cyvictim.find({ _id: selectVictims })
+			.skip(perPage * pageNumber - perPage)
+			.limit(perPage)
+			.exec(function(err, allCyvictims) {
+				Cyvictim.count().exec(function(err, count) {
+					if (err) {
+						console.log(err);
+					} else {
+						res.render('shelters/victims', {
+							shelter: foundShelter,
+							cyvictims: allCyvictims,
+							current: pageNumber,
+							pages: Math.ceil(count / perPage)
+						});
+					}
+				});
+			});
+		// res.render('shelters/victims', { shelter: foundShelter });
 	});
 });
 
