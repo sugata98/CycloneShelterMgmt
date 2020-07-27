@@ -40,10 +40,10 @@
                                         <div class="card-header"><i class="fas fa-user"></i> <%= cyvictim.name %></div>
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-3">
                                                     <p class="card-text"><i class="fas fa-id-card"></i> <%= cyvictim.userID %></p>
                                                 </div>
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-5">
                                                     <p class="card-text"><i class="fas fa-briefcase"></i> <%= cyvictim.occupation %></p>
                                                 </div>
                                                 <div class="col-lg-4">
@@ -51,29 +51,29 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-3">
                                                     <p class="card-text"><i class="fas fa-venus-mars"></i> <%= cyvictim.gender %></p>
                                                 </div>
                                                 
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-5">
                                                     <p class="card-text"><i class="fas fa-users"></i> <%= cyvictim.count %></p>
                                                 </div>
                                                 
                                                 <div class="col-lg-4">
                                                     <p class="card-text">
                                                         <% if (cyvictim.isCompensated) { %>
-                                                            <i class="fas fa-check-circle"></i> Paid
+                                                            <i class="fas fa-check-circle"></i> Compensated
                                                             <% } else { %>
-                                                                <i class="fas fa-times-circle"></i> Not Paid
+                                                                <i class="fas fa-times-circle"></i> Not Compensated
                                                                 <% } %> 
                                                             </p>
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-lg-4">
+                                                        <div class="col-lg-3">
                                                             <p class="card-text"><i class="fas fa-birthday-cake"></i> <%= cyvictim.age %></p>
                                                         </div>
-                                                        <div class="col-lg-8">
+                                                        <div class="col-lg-9">
                                                             <p class="card-text"><i class="fas fa-map-marked-alt"></i> <%= cyvictim.address %></p>
                                                         </div>
                                                     </div>
